@@ -36,20 +36,20 @@ data_path = open(Path)
 data_load = list(csv.reader(data_path))
 data_path.close()
 weather_data = data_load[1:]
-x = []
+temps = []
 
 # Temperature statistics
-for i in weather_data:
-    x.append([i[0], i[1], i[2], i[3], i[4]])
-total_temps = convert_temp(x)
+for temp in weather_data:
+    temps.append([temp[0], temp[1], temp[2], temp[3], temp[4]])
+total_temps = convert_temp(temps)
 sum_of_temps = calculate_sum(total_temps)
 print("sum", sum_of_temps)
 print("avg", sum_of_temps / (len(total_temps) if len(total_temps) else 1))
 
 # Wind Statistics
 total_wind = 0
-for i in weather_data:
-    u = float(i[3])
-    v = float(i[4])
+for winds in weather_data:
+    u = float(winds[3])
+    v = float(winds[4])
     total_wind += math.sqrt(u * u + v * v)
 print("wind", total_wind / len(data_load))
